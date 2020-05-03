@@ -1,16 +1,10 @@
-import mysql from "mysql"
-
+import dbConnection from "../../config/dbConnection.js"
 export default (app) =>{
+  const connection = dbConnection()
     app.get('/noticias',(req, res) => {
-      const connection =  mysql.createConnection({
-            host:'localhost',
-            user:'root',
-            password:'william1991',
-            database:'portal',
-         })
-        
         connection.query('select * from noticias',(error, result) =>{
           res.render("noticias/noticias",{noticias: result})
         })
+
     })
 }
